@@ -33,7 +33,7 @@ Following characters will be used to in transformed data and to explain any exam
 
 | ASCII  | char in examples  | meaning  |
 |----|----|----|
-| 186 |  | | boundry indeicator. To identify here a value is |
+| 186 |  \| | boundary indicator. To separate consecutive dynamic data fields. |
 | 197 |  ^ | next field(set of fields) is/are repeated array item|
 | 178 |  $ | empty value|
 | 176 |  # | missing, null, undefined field|
