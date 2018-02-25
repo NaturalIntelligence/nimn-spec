@@ -26,6 +26,11 @@ In addition of removing the meta data, it also replaces common repeated characte
 
 You can define custom data types, like image, and how to parse and parse it back for further compression. However, in this case, you may loose readbility. And you not be able to perform any search on compressed data. Check [nimnjs](https://github.com/nimndata/nimnjs-node) for more detail.
 
+### MIME type
+
+application/nimn
+text/nimn
+
 ### Comparision with other forms of data representation
 
 #### XML (806 bytes)
