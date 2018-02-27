@@ -33,6 +33,8 @@ text/nimn
 
 ### Comparision with other forms of data representation
 
+![comparision of data formats](dataformats.png)
+
 #### XML (806 bytes)
 ```xml
 <any_name>
