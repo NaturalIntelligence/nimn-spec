@@ -12,15 +12,13 @@ In addition of removing the meta data, it also replaces common repeated characte
 | ASCII  | Char used in examples  | meaning  |
 |----|----|----|
 | 186 |  \| | boundary indicator. To separate consecutive dynamic data fields. Like string, date, numbers etc. |
-| 197 |  ^ | It indeicates that next field(set of fields) is/are repeated array item|
+| 197 |  ^ | It indeicates that next field(set of fields) is/are not array item|
 | 178 |  $ | empty value of data field. Like string, date, number, boolean etc.|
 | 176 |  # | null field|
 | 201 |  ₹ | missing or undefined field|
 | 177 |  @ | empty object or array|
 | 254 |  ! | null object or array|
 | 200 |  X | missing, or undefined object or array|
-| 217 |  Y | True|
-| 218 |  N | False|
 | 198 |  { | Onject start|
 | 199 |  \[ | Array start|
 
