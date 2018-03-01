@@ -159,5 +159,4 @@ or
 ```
 �����122233344550�122233344551�Jack�33�Yes�OMs9dem��New York�Park Ave�1�1�Boston�Centre St�33�24���122233344553�122233344554�Boris�34�Yes�Faun34m��Moscow�Kahovka�1�2�Tula�Lenina�3�78��
 ```
-or
 
