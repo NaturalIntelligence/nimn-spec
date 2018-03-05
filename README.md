@@ -22,7 +22,7 @@ In addition of removing the meta data, it also replaces common repeated characte
 | 198 |  { | Onject start|
 | 199 |  \[ | Array start|
 
-You can define custom data types, like image, and how to parse and parse it back for further compression. However, in this case, you may loose readbility. And you not be able to perform any search on compressed data. Check [nimnjs](https://github.com/nimndata/nimnjs-node) for more detail.
+You can define custom data types, like image, and how to parse and parse it back for further compression. You can even compress fixed value sets like Enum. However, in case of field level compression, you may loose readbility. And you'll not be able to perform any search on compressed data. Check [nimnjs](https://github.com/nimndata/nimnjs-node) for more detail.
 
 ### MIME type
 
@@ -160,3 +160,9 @@ or
 
 ## Contribution
 I need your expert advice, and contribution to grow nimn (निम्न) so that it can support all mazor languages. Please join the [official organization](https://github.com/nimndata) on github to support it. And ask your friends, and colleagues to give it a try. It can not only save bandwidth but speed up communication, search and much more.
+
+## Implementations
+
+Please refer following implementations in various languages
+
+* [Node / Java Script](https://github.com/nimndata/nimnjs-node)
