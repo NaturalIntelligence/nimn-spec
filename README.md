@@ -4,10 +4,9 @@ Specification of nimn (निम्न) data form to keep the uniformity among a
 ## About
 Nimn (निम्न) word is taken from Sanskrit language.
 
-When we communicate between servers using JSON, half of the bandwidth is utilized by metadata. Nimn data form is the compressed JSON without field names which can be compressed back to original JSON when client is aware with JSON structure. In brief, it can be understood as **schema aware compression**.
+When we communicate between servers or clients, half of the bandwidth is utilized by metadata. *Nimn data is dense form of data where field level information is kept separate from actual data.*  In brief, it can be understood as **schema aware compressed** form.
 
-In addition of removing the meta data, it also replaces common repeated characters with special characters. Here is the complere list;
-
+In addition, nimn format uses following charset to identify the boundaries of data and their structure.
 
 | ASCII  | Char used in examples  | meaning  |
 |----|----|----|
@@ -22,12 +21,16 @@ In addition of removing the meta data, it also replaces common repeated characte
 | 198 |  { | Onject start|
 | 199 |  \[ | Array start|
 
-You can define custom data types, like image, and how to parse and parse it back for further compression. You can even compress fixed value sets like Enum. However, in case of field level compression, you may loose readbility. And you'll not be able to perform any search on compressed data. Check [nimnjs](https://github.com/nimndata/nimnjs-node) for more detail.
+
+**Considirations**
+* User is free to bind other ASCII numbers with fixed values set like boolean and can decide whether they should be separated by a boundary character or not.
+  * All the applications under Nimn data organization use ASCII 217 and 218 to represent boolean value.  Check [nimnjs](https://github.com/nimndata/nimnjs-node) for more detail.
+* User can also define their own standard for field level compression.
+  * All the applications under Nimn data organization compress dates on demand as per the instructions given [here](https://github.com/nimndata/nimnjs-date-parser).
 
 ### MIME type
 
 application/nimn
-text/nimn
 
 ### Comparision with other forms of data representation
 
