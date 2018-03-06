@@ -22,11 +22,14 @@ In addition, nimn format uses following charset to identify the boundaries of da
 | 199 |  \[ | Array start|
 
 
-**Considirations**
+### Considirations
 * User is free to bind other ASCII numbers with fixed values set like boolean and can decide whether they should be separated by a boundary character or not.
   * All the applications under Nimn data organization use ASCII 217 and 218 to represent boolean value.  Check [nimnjs](https://github.com/nimndata/nimnjs-node) for more detail.
 * User can also define their own standard for field level compression.
   * All the applications under Nimn data organization compress dates on demand as per the instructions given [here](https://github.com/nimndata/nimnjs-date-parser).
+* If data contains any character given in above charset, or in custom charset used to define fixed value sets which can be used without boundaries then such characters should be backslashed.
+* **Security** : Nimn does not enforce a security mechanism. Users define security features at application, underlying transport level or data store. The objects serialized by Nimn are essentially arbitrary objects that can contain executable or secret content. Appropriate mechanisms must be implemented at the user application, underlying transport level or data store.
+
 
 ### MIME type
 
