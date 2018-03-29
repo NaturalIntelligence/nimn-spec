@@ -1,5 +1,5 @@
 # spec
-Specification of nimn (निम्न) data form to keep the uniformity among all the implementations.
+This repository is to give you more detail about Nimn data format. Please read [Specification](/SPEC.md) for more detail.
 
 ## About
 Nimn (निम्न) word is taken from Sanskrit language.
