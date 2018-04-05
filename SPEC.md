@@ -26,12 +26,12 @@ Example:
 {Some Name \[nick name\]|33|Some long address
 ```
 
-There are 3 concepts in Nimn format;
+There are 4 concepts in Nimn format;
 
-1. *Schema*                       : Helps to map the field name of the application object with values in Nimn data.
-2. *Data*                            : Serialized dense form of the application object.
-3. *Boundary characters*   : Helps to identify boundary of Map (Object), List ( Array) and dynamic values in Nimn data.
-4. *Fixed Value characters*          : Represents unique and fixed value for a field.
+1. *Schema*                     : Helps to map the field name of the application object with values in Nimn data.
+2. *Data*                       : Serialized dense form of the application object.
+3. *Boundary characters*        : Helps to identify boundary of Map (Object), List ( Array) and dynamic values in Nimn data.
+4. *Fixed Value characters*     : Represents unique and fixed value for a field.
 
 ### Schema
 
