@@ -6,34 +6,9 @@ Nimn (निम्न) word is taken from Sanskrit language.
 
 When we communicate between servers or clients, half of the bandwidth is utilized by metadata. *Nimn data is dense form of data where field level information is kept separate from actual data.*  In brief, it can be understood as **schema aware compressed** form.
 
-In addition, nimn format uses following charset to identify the boundaries of data and their structure.
-
-| ASCII  | Char used in examples  | meaning  |
-|----|----|----|
-| 186 |  \| | boundary indicator. To separate consecutive dynamic data fields. Like string, date, numbers etc. |
-| 197 |  ^ | It indeicates that next field(set of fields) is/are not array item|
-| 178 |  $ | empty value of data field. Like string, date, number, boolean etc.|
-| 176 |  # | null field|
-| 201 |  ₹ | missing or undefined field|
-| 177 |  @ | empty object or array|
-| 254 |  ! | null object or array|
-| 200 |  X | missing, or undefined object or array|
-| 198 |  { | Onject start|
-| 199 |  \[ | Array start|
-
-
-### Considirations
-* User is free to bind other ASCII numbers with fixed values set like boolean and can decide whether they should be separated by a boundary character or not.
-  * All the applications under Nimn data organization use ASCII 217 and 218 to represent boolean value.  Check [nimnjs](https://github.com/nimndata/nimnjs-node) for more detail.
-* User can also define their own standard for field level compression.
-  * All the applications under Nimn data organization compress dates on demand as per the instructions given [here](https://github.com/nimndata/nimnjs-date-parser).
-* If data contains any character given in above charset, or in custom charset used to define fixed value sets which can be used without boundaries then such characters should be backslashed.
-* **Security** : Nimn does not enforce a security mechanism. Users define security features at application, underlying transport level or data store. The objects serialized by Nimn are essentially arbitrary objects that can contain executable or secret content. Appropriate mechanisms must be implemented at the user application, underlying transport level or data store.
-
-
 ### MIME type
 
-application/nimn
+TODO: update it as soon as confirmed
 
 ### Comparision with other forms of data representation
 
@@ -165,7 +140,7 @@ or
 ```
 
 ## Contribution
-I need your expert advice, and contribution to grow nimn (निम्न) so that it can support all mazor languages. Please join the [official organization](https://github.com/nimndata) on github to support it. And ask your friends, and colleagues to give it a try. It can not only save bandwidth but speed up communication, search and much more.
+We need your expert advice, and contribution to grow nimn (निम्न) so that it can support all mazor languages. Please join the [official organization](https://github.com/nimndata) on github to support it. And ask your friends, and colleagues to give it a try. It can not only save bandwidth but speed up communication, search and much more.
 
 ## Implementations
 
