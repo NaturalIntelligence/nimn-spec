@@ -1,6 +1,19 @@
 # Nimn (निम्न) Specification
 Working copy of Nimn data format specification.
 
+## Table of contents
+* [Introduction](https://github.com/nimndata/spec/blob/master/SPEC.md#introduction)
+* [Conventions Used in This Document](https://github.com/nimndata/spec/blob/master/SPEC.md#conventions-used-in-this-document)
+* [Grammar](https://github.com/nimndata/spec/blob/master/SPEC.md#grammar)
+    * [Boundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#boundary-characters)
+    * [Fixed value characters](https://github.com/nimndata/spec/blob/master/SPEC.md#fixed-value-characters)
+    * [Values](https://github.com/nimndata/spec/blob/master/SPEC.md#values)
+* [Parser](https://github.com/nimndata/spec/blob/master/SPEC.md#parser)
+* [IANA considerations](https://github.com/nimndata/spec/blob/master/SPEC.md#iana-considerations)
+* [Customization / Extension](https://github.com/nimndata/spec/blob/master/SPEC.md#customization) 
+
+
+## Introduction
 Nimn is an object serialization specification like JSON.
 
 It represents more dense form of data. And can also be known as Schema Aware Compressed Data Form.
@@ -26,7 +39,7 @@ Example:
 {Some Name \[nick name\]|33|Some long address
 ```
 
-*Note* : Characters `{` , `[`, `]`, `|` in Nimn data format are used to represent ASCII char 198 , 204, 185, and 179 respectively. Check [bundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters) for more detail.
+*Note* : Characters `{` , `[`, `]`, `|` in Nimn data format are used to represent ASCII char 198 , 204, 185, and 179 respectively. Check [boundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#boundary-characters) for more detail.
 
 ## Conventions Used in This Document
 
@@ -79,7 +92,7 @@ Example
 ```
 *Note* : Characters `{` , `[`, `]`, `|` in Nimn data format are used to represent ASCII char 198 , 204, 185, and 179 repectively.
 
-### Bundary characters
+### Boundary characters
 
 * **Object start** : ASCII char 198
 * **Array start**   : ASCII char 204
@@ -120,7 +133,7 @@ Points to be considered at the time of serialization.
  
 * Order of the keys in an object should be maintained as order of values in serialized data.
 * Any key presents in application object but not in schema (definition of object) must be ignored.
-* Any key presents in schema but not in object will be marked by [missing character](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters).
+* Any key presents in schema but not in object will be marked by [missing character](https://github.com/nimndata/spec/blob/master/SPEC.md#boundary-characters).
 * In case of empty, nil, or missing map (object) or list (array) fixed value characters should be used. And respective boundary characters should be omitted.
 
 *Application object*
