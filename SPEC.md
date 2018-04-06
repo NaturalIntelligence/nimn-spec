@@ -3,11 +3,19 @@ Working copy of Nimn data format specification.
 
 Nimn is an object serialization specification like JSON.
 
-It represents more densed form of data. And can also be known as Schema Aware Compressed Data Form.
+It represents more dense form of data. And can also be known as Schema Aware Compressed Data Form.
+
+Nimn format can represent structured types (objects and arrays) having structured or primitive types (strings, numbers, booleans, and null), with data, missing (undefined), and empty values ([], {}, "").
+
+An object (collection of zero or more name/value pairs) serialized in Nimn format doesn't contain keys. Hence the order of values is important. Information of keys, called schema or the structure of object, can be maintained separately and it is required at the time of deserialization. Any change in order or type of keys may result error or invalid application object.
+
+Any key presents in object but not in schema (definition of object) will be ignored at the time of serialization. Any key presents in schema but not in object will be marked by missing character. Check [bundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters) for more detail.
 
 Serialization is conversion from application object into Nimn data format. Data in serialized format or nimn format is separated by boundary of fixed value characters.
 
 Deserialization is conversion from Nimn data format into application object.
+
+
 
 Example:
 
@@ -28,32 +36,33 @@ Example:
 
 *Note* : Characters `{` , `[`, `]`, `|` in Nimn data format are used to represent ASCII char 198 , 204, 185, and 179 repectively. Check [bundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters) for more detail.
 
-There are 4 concepts in Nimn format;
+## Conventions Used in This Document
 
-1. *Schema*                     : Helps to map the field name of the application object with values in Nimn data.
-2. *Data*                       : Serialized dense form of the application object.
-3. *Boundary characters*        : Helps to identify boundary of Map (Object), List ( Array) and dynamic values in Nimn data.
-4. *Fixed Value characters*     : Represents unique and fixed value for a field.
+* *schema* : It defines the structure of *ordered* key/type pairs where the key defines the name of the field and type can be either primitive: string, boolean, number (custom types are not the part of this specification), or array (list of single type either premitive or schema), or another schema.
 
-### Schema
-
-A schema represents the structure of the application object. Though the structure can be derived from the instance of the object, but there is a possibility that an instance doesn't consist all the fields. Hence there is the need to specify the schema separately.
-
-Example
+Example:
 
 ```js
 {
     "name" : "string",
     "age" : "number",
-    "address" : "string"    
+    "address" : "string",
+    "hobbies" : ["string"],
+    "projects" : {
+        "title" : "string",
+        "description" : "string"
+    }
 }
 ```
 
-There is no standard definition of schema. It is purely depends on the programming language or serializer who is converting the application object to nimn data format.
+* *array* : Array represents the list of similar type of elements.
+* *object* : Object represents an instance of the schema given above. It should not contain any key which is not defined in the schema. But schema may have some keys which are missing in object.
+* *Dynamic value fields* : Dynamic value fields are the fields which can have any value like string, number, etc.
+* *Fixed value fields* : Fixed value fields are the fields which have fixed set of values like boolean. (or like Enum in Java)
 
-### Data
+## Grammar
 
-Data is the flat form of application object where all the values are separated by either boundary characters or value characters.
+Nimn data is the sequence of data values, boundary characters, and fixed value characters (used instead of actual data values). If data value consist any boundary or fixed value character then it should be backslashed. 
 
 Example
 
@@ -76,11 +85,7 @@ Example
 ```
 [{Some Name \[nick name\]|33|Some long address{Some Name|35|A-3:34 Some long address]
 ```
-*Note* : Characters `{` , `[`, `]`, `|` in Nimn data format are used to represent ASCII char 198 , 204, 185, and 179 repectively. Check [bundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters) for more detail.
-
-If the value of any field have the boundary or fixed value character as value, they should be backslashed as given in the above example.
-
-Empty / Null or Nil / Undefined / Missing values are represented by fixed value characters and can not be skipped while serializing from application object to nimn data format. See [Fixed Value Characters](https://github.com/nimndata/spec/blob/master/SPEC.md#fixed-value-characters) section for more detail.
+*Note* : Characters `{` , `[`, `]`, `|` in Nimn data format are used to represent ASCII char 198 , 204, 185, and 179 repectively.
 
 ### Bundary characters
 
@@ -88,8 +93,6 @@ Empty / Null or Nil / Undefined / Missing values are represented by fixed value 
 * **Array start**   : ASCII char 204
 * **Array end**     : ASCII char 185
 * **Dynamic Value separater** : ASCII char 179
-
-*Note* :  Dynamic value fields are the fields which can have any value like address, age, etc. Fixed value fields are the fields which have fixed set of values like boolean, state etc.
 
 ### Fixed Value Characters
 
@@ -113,10 +116,8 @@ When a value is empty;
 * *Empty premitive* : ASCII char 177
 * *Empty Object / Array / List* : ASCII char 178
 
-## Implementation Guidelines
-**Scenario 1** In case of empty, nil, or missing map (object) or list (array) their repective boundary characters should be omitted.
 
-Example
+**Scenario 1** In case of empty, nil, or missing map (object) or list (array) their respective boundary characters should be omitted.
 
 *Application object*
 ```js
@@ -151,21 +152,10 @@ Example
 
 *Note* : `{`, `Y` and `N` in above example should be replaced by ASCII characters 198, 181 and 183. Above example is for understanding purpose only.
 
-## Limitations
+### Values
 
-Though Nimn data format is subset of JSON, top level element should be either object (map: key, value pair) or an array (list). Hence the following are valid JSON objects but not valid for Nimn data format.
+Nimn data must be the serialized form of an object, array or a fixed value character representing missing, null, or empty value.
 
-```js
-//In Javascript
-//Qualified JSON object but invalid for Nimn format
-var num = 34;
-var str = "alert('valid json object')";
-
-eval(JSON.stringify(str)) === str; //TRUE (it'll not invoke alert)
-
-nimnEncoder(str); //Error: Invalid input
-
-```
 
 ## Security Consideration
 
