@@ -26,6 +26,8 @@ Example:
 {Some Name \[nick name\]|33|Some long address
 ```
 
+*Note* : Characters `{` , `[`, `]`, `|` in Nimn data format are used to represent ASCII char 198 , 204, 185, and 179 repectively. Check [bundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters) for more detail.
+
 There are 4 concepts in Nimn format;
 
 1. *Schema*                     : Helps to map the field name of the application object with values in Nimn data.
@@ -74,6 +76,7 @@ Example
 ```
 [{Some Name \[nick name\]|33|Some long address{Some Name|35|A-3:34 Some long address]
 ```
+*Note* : Characters `{` , `[`, `]`, `|` in Nimn data format are used to represent ASCII char 198 , 204, 185, and 179 repectively. Check [bundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters) for more detail.
 
 If the value of any field have the boundary or fixed value character as value, they should be backslashed as given in the above example.
 
@@ -81,10 +84,10 @@ Empty / Null or Nil / Undefined / Missing values are represented by fixed value 
 
 ### Bundary characters
 
-* **Object start** : Curly/Middle opening bracket ( `{` ) is used to represent the starting of an object.
-* **Array start**   : Square/Big opening bracket ( `[` ) is used to represent the starting of an array/list.
-* **Array end**     : Square/Big closing bracket ( `]` ) is used to represent the end of an array/list.
-* **Dynamic Value separater** : Pipe sign ( `|` ) is used to separate two consecutive dynamic fields.
+* **Object start** : ASCII char 198
+* **Array start**   : ASCII char 204
+* **Array end**     : ASCII char 185
+* **Dynamic Value separater** : ASCII char 179
 
 *Note* :  Dynamic value fields are the fields which can have any value like address, age, etc. Fixed value fields are the fields which have fixed set of values like boolean, state etc.
 
@@ -92,8 +95,8 @@ Empty / Null or Nil / Undefined / Missing values are represented by fixed value 
 
 As per the Nimn data format `boolean` value can be represented as following;
 
-* *TRUE*  : ASCII char 217
-* *FALSE* : ASCII char 218
+* *TRUE*  : ASCII char 181
+* *FALSE* : ASCII char 183
 
 When a value is not present / missing / undefined:
 
@@ -146,7 +149,45 @@ Example
 {YNsome nameN
 ```
 
-*Note* : `Y` and `N` in above example should be replaces by ASCII characters 217 and 218. Above example is for understanding purpose only.
+*Note* : `{`, `Y` and `N` in above example should be replaced by ASCII characters 198, 181 and 183. Above example is for understanding purpose only.
+
+## Limitations
+
+Though Nimn data format is subset of JSON, top level element should be either object (map: key, value pair) or an array (list). Hence the following are valid JSON objects but not valid for Nimn data format.
+
+```js
+//In Javascript
+//Qualified JSON object but invalid for Nimn format
+var num = 34;
+var str = "alert('valid json object')";
+
+eval(JSON.stringify(str)) === str; //TRUE (it'll not invoke alert)
+
+nimnEncoder(str); //Error: Invalid input
+
+```
+
+## Security Consideration
+
+Nimn data format in itself is not executable. Hence it is safe to use. However as there is no restriction on the data other than backslashing characters being used by Nimn data format itself to define the data boundaries, it may contain binary data, regular expressions, scripting code, SQL queries etc. So the user application should convert it first into the application object instead of direct evaluation if they use the same format to represent the executable code.
+
+Example:
+
+Applying Limitations of Nimn format and Security consideration, a Nimn data string passed from `eval()` in javascript should give error instead of successful evaluation.
+ 
+```js
+var str = "alert('valid json object')";
+
+nimnEncoder(str);//Error: Invalid input
+
+var obj = {
+    "key" : "alert('valid json object')"
+}
+var nimnFormat = nimnEncoder(obj);//Æalert('valid json object')
+eval(nimnFormat);//Uncaught ReferenceError: Æalert is not defined
+```
+
+*Note* : As Nimn serializer/Encoder is just stripping field name out from serialized format, it may or may not need schema information. It completely depends how it is implemented.
 
 ## Customization
 
