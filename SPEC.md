@@ -9,14 +9,6 @@ Nimn format can represent structured types (objects and arrays) having structure
 
 An object (collection of zero or more name/value pairs) serialized in Nimn format doesn't contain keys. Hence the order of values is important. Information of keys, called schema or the structure of object, can be maintained separately and it is required at the time of deserialization. Any change in order or type of keys may result error or invalid application object.
 
-Any key presents in object but not in schema (definition of object) will be ignored at the time of serialization. Any key presents in schema but not in object will be marked by missing character. Check [bundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters) for more detail.
-
-Serialization is conversion from application object into Nimn data format. Data in serialized format or nimn format is separated by boundary of fixed value characters.
-
-Deserialization is conversion from Nimn data format into application object.
-
-
-
 Example:
 
 **Application Object**
@@ -34,7 +26,7 @@ Example:
 {Some Name \[nick name\]|33|Some long address
 ```
 
-*Note* : Characters `{` , `[`, `]`, `|` in Nimn data format are used to represent ASCII char 198 , 204, 185, and 179 repectively. Check [bundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters) for more detail.
+*Note* : Characters `{` , `[`, `]`, `|` in Nimn data format are used to represent ASCII char 198 , 204, 185, and 179 respectively. Check [bundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters) for more detail.
 
 ## Conventions Used in This Document
 
@@ -116,8 +108,20 @@ When a value is empty;
 * *Empty premitive* : ASCII char 177
 * *Empty Object / Array / List* : ASCII char 178
 
+### Values
 
-**Scenario 1** In case of empty, nil, or missing map (object) or list (array) their respective boundary characters should be omitted.
+Nimn data must be the serialized form of an object, array or a fixed value character representing missing, null, or empty value.
+
+## Parser
+
+**Serialization** is the process of converting application object into Nimn data format which confirm Nimn [grammar](https://github.com/nimndata/spec/blob/master/SPEC.md#grammar).
+
+Points to be considered at the time of serialization.
+ 
+* Order of the keys in an object should be maintained as order of values in serialized data.
+* Any key presents in application object but not in schema (definition of object) must be ignored.
+* Any key presents in schema but not in object will be marked by [missing character](https://github.com/nimndata/spec/blob/master/SPEC.md#bundary-characters).
+* In case of empty, nil, or missing map (object) or list (array) fixed value characters should be used. And respective boundary characters should be omitted.
 
 *Application object*
 ```js
@@ -131,7 +135,7 @@ When a value is empty;
 
 *Note* - `!` is representing ASCII char 177 in above example.
 
-**Scenario 2** Two consecutive fixed value characters or the combination of dynamic and fixed value characters are not required to be separated by value separator character ( `|` ).
+* Two consecutive fixed value characters or the combination of dynamic and fixed value characters are not required to be separated by value separator character ( `|` ).
 
 Example
 
@@ -152,12 +156,17 @@ Example
 
 *Note* : `{`, `Y` and `N` in above example should be replaced by ASCII characters 198, 181 and 183. Above example is for understanding purpose only.
 
-### Values
+**Deserialization** is the process of converting Nimn data format into application object.
 
-Nimn data must be the serialized form of an object, array or a fixed value character representing missing, null, or empty value.
+All the points covered in serialization should be cosidered.
 
 
-## Security Consideration
+## IANA Considerations
+
+### Encoding considerations
+8bit if UTF-8; binary if UTF-16 or UTF-32
+
+### Security Consideration
 
 Nimn data format in itself is not executable. Hence it is safe to use. However as there is no restriction on the data other than backslashing characters being used by Nimn data format itself to define the data boundaries, it may contain binary data, regular expressions, scripting code, SQL queries etc. So the user application should convert it first into the application object instead of direct evaluation if they use the same format to represent the executable code.
 
@@ -178,6 +187,12 @@ eval(nimnFormat);//Uncaught ReferenceError: Æalert is not defined
 ```
 
 *Note* : As Nimn serializer/Encoder is just stripping field name out from serialized format, it may or may not need schema information. It completely depends how it is implemented.
+
+### Applications which use this media:
+Any application can use Nimn data format to exchange data between same or two different applications.
+
+### Restrictions on usage:
+none
 
 ## Customization
 
