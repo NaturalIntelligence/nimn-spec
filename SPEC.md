@@ -181,25 +181,9 @@ All the points covered in serialization should be cosidered.
 
 ### Security Consideration
 
-Nimn data format in itself is not executable. Hence it is safe to use. However as there is no restriction on the data other than backslashing characters being used by Nimn data format itself to define the data boundaries, it may contain binary data, regular expressions, scripting code, SQL queries etc. So the user application should convert it first into the application object instead of direct evaluation if they use the same format to represent the executable code.
+Nimn data format in itself is not executable. Data encoded to Nimn format may contain binary data, regular expressions, scripting code, SQL queries etc. So the user application should convert it first into the application object instead of direct evaluation if they use the same format to represent the executable code.
 
-Example:
-
-Applying Limitations of Nimn format and Security consideration, a Nimn data string passed from `eval()` in javascript should give error instead of successful evaluation.
- 
-```js
-var str = "alert('valid json object')";
-
-nimnEncoder(str);//Error: Invalid input
-
-var obj = {
-    "key" : "alert('valid json object')"
-}
-var nimnFormat = nimnEncoder(obj);//Æalert('valid json object')
-eval(nimnFormat);//Uncaught ReferenceError: Æalert is not defined
-```
-
-*Note* : As Nimn serializer/Encoder is just stripping field name out from serialized format, it may or may not need schema information. It completely depends how it is implemented.
+Structure of the application object is not bundled with encoded data. It needs to be provided externally. Hence if there is any modification in structure of encoded data like extra data field is inserted, existing data field is deleted, or if the sequence of data field is changed in encoded data then Nimn encoder will error out. However, as Nimn format doesn't enforce any limit or restriction on encoded data other than backslashing Nimn format supported character, user should ensure the integrity or confidentiality of encoded data themselves. 
 
 ### Applications which use this media:
 Any application can use Nimn data format to exchange data between same or two different applications.
