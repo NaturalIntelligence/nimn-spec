@@ -140,7 +140,7 @@ or
 ```
 
 ## Contribution
-We need your expert advice, and contribution to grow nimn (निम्न) so that it can support all mazor languages. Please join the [official organization](https://github.com/nimndata) on github to support it. And ask your friends, and colleagues to give it a try. It can not only save bandwidth but speed up communication, search and much more.
+We need your expert advice, and contribution to grow nimn (निम्न) so that it can support all major languages. Please join the [official organization](https://github.com/nimndata) on github to support it. And ask your friends, and colleagues to give it a try. It can not only save bandwidth but speed up communication, search and much more.
 
 ## Implementations
 
