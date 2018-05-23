@@ -8,7 +8,7 @@ When we communicate between servers or clients, half of the bandwidth is utilize
 
 ### MIME type
 
-[application/vnd.nimn](https://www.iana.org/assignments/media-types/application/vnd.nimn)
+[application/vnd.nimn](https://www.iana.org/assignments/media-types/application/vnd.nimn) , application/nimn (used by some applications)
 
 ### Comparision with other forms of data representation
 
