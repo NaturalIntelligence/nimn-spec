@@ -1,5 +1,5 @@
 # spec
-This repository is to give you more detail about Nimn data format. Please read [Specification](/SPEC.md) for more detail.
+You'll find an overview of Nimn format on this page. Please read [Specification](/SPEC.md) for more detail.
 
 ## About
 Nimn (निम्न) word is taken from Sanskrit language.
@@ -160,3 +160,12 @@ We need your expert advice, and contribution to grow nimn (निम्न) so t
 Please refer following implementations in various languages
 
 * [Node / Java Script](https://github.com/nimndata/nimnjs-node)
+
+## Users
+List of applications and projects using Nimn. (Raise an issue to showcase yours)
+
+<a href="https://github.com/NaturalIntelligence/imglab" title="imglab" ><img src="https://github.com/NaturalIntelligence/imglab/blob/master/img/imglab_logo.png?raw=true" width="80px"  style="margin:4px;"></a> 
+<a href="https://github.com/NaturalIntelligence/Stubmatic" title="stubmatic" ><img src="https://camo.githubusercontent.com/ff711425dc2286cd215637b7114eb43e571f001d/68747470733a2f2f6e61747572616c696e74656c6c6967656e63652e6769746875622e696f2f537475626d617469632f696d672f737475626d617469635f6c6f676f2e706e673f7261773d74727565" width="80px"  style="margin:4px;" ></a>
+<a href="https://github.com/muneem4node/muneem" title="Muneem" ><img src="https://github.com/muneem4node/muneem/raw/master/static/muneem.png?raw=true" width="80px"  style="margin:4px;" ></a>
+<a href="https://github.com/funcards/match-it/" title="Match it" ><img src="https://github.com/funcards/match-it/raw/master/static/img/matchit_logo.png?raw=true" width="80px"  style="margin:4px;" ></a>
+
