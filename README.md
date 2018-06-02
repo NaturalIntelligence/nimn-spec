@@ -6,6 +6,19 @@ Nimn (निम्न) word is taken from Sanskrit language.
 
 When we communicate between servers or clients, half of the bandwidth is utilized by metadata. *Nimn data is dense form of data where field level information is kept separate from actual data.*  In brief, it can be understood as **schema aware compressed** form.
 
+## Benefits and loss
+
+### Benefits
+
+* Size of the data is reduced by more than 60%. Hence less disk space and network bandwidth is required. You may ignore compression.
+* Defined schema can speed up processing of data.
+
+### Loss
+
+* Everytime you change object structure, schema need to be updated. So you need to maintain schema for every version and data should have the schema version.
+* Dynamic object structure are not supported.
+* You need to maintain the order of keys in an object.
+
 ### MIME type
 
 [application/vnd.nimn](https://www.iana.org/assignments/media-types/application/vnd.nimn) , application/nimn (used by some applications)
