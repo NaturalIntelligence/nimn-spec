@@ -1,5 +1,5 @@
 # spec
-You'll find an overview of Nimn format on this page. Please read [Specification](/SPEC.md) for more detail.
+You'll find an overview of Nimn format on this page. Please read [Specification](/SPEC.md) for more detail. Or visit [site](http://nimn.in) to try yourself.
 
 ## About
 Nimn (निम्न) word is taken from Sanskrit language.
