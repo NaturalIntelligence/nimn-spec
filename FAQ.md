@@ -2,7 +2,7 @@
 
 
 ## Q: Does it speed up an application?
-Ans: The aim of nimn data format is to reduce the size of data. Processing the data or whether it can improve the performance deoend on implementation. However as you have the data structure in advance, it's processing can be faster.
+Ans: The aim of nimn data format is to reduce the size of data. Processing the data or whether it can improve the performance depend on implementation. However as you have the data structure in advance, it's processing can be faster.
 
 ## Q: What if I compress JSON instead parsing it to Nimn data format?
 Ans: The size of Nimn data is smaller than compressed JSON.
