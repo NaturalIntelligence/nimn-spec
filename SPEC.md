@@ -262,7 +262,7 @@ Points to be considered at the time of serialization.
 
 * A list can have single type of element which can be either any premitive value, an object or a list.
 * Data root should be either an object or a list.
-* Two consecutive fixed value characters or the combination of dynamic and fixed value characters are not required to be separated by value separator character ( `|` ).
+* Value separator character ( `|` ) should be used when any field out of two consecutive fields don't have Nimn supported character.
 
 Example
 
