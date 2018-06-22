@@ -1,6 +1,17 @@
 # Revisions
 This file is contains revision history with appropriate reason and detail of revision.
 
+### Revision 3 / 22 Jun 2018
+
+#### Addition
+    
+* Updated range is ASCII [175 - 188].
+* Add Field-name-separator character (ASCII 188) to support dynamic maps.
+
+#### Update
+
+* Improve the detail of serialization and deserialization process.
+
 ### Revision 2 / 06 Jun 2018
 
 #### Addition
