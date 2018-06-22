@@ -98,7 +98,17 @@ Example
 * **Object end** : ASCII char 180
 * **Array start**   : ASCII char 187
 * **Array end**     : ASCII char 185
-* **Dynamic Value separater** : ASCII char 179
+* **Dynamic Value separator** : ASCII char 179
+
+Unlike enum, and boolean there can be fields like String, Number, Date and other which can have any dynamic values. Dynamic value separator is required to define the boundary of the value.
+
+Check [Serialization](#serialization) section for more detail
+
+* **Field Name separator** : ASCII char 188
+
+Many programming languages, like Java, supports maps where key name is not known in advance. These maps can be considered as special list of key value pairs. Nimn data format is all about separating object structure from actual data so dynamic maps are not recommended. However, to cover edge scenarios, field name separator can be used.
+
+Check [Serialization](#serialization) section for more detail
 
 ### Fixed Value Characters
 
@@ -140,7 +150,7 @@ Points to be considered at the time of serialization.
 []
 ```
 
-*Nimn Format*
+*Nimn Data*
 ```
 !
 ```
@@ -154,16 +164,30 @@ Points to be considered at the time of serialization.
 [{"msg": "This is awesome"}]
 ```
 
-*Nimn Format*
+*Nimn Data*
 ```
 [{This is awesome}]
 ```
 
 *Note* : Characters `{` , `[`, `]`, `}` in Nimn data format are used to represent ASCII char 182 , 187, 185, and 180 respectively. Check [boundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#boundary-characters) for more detail.
 
+* In case of dynamic map or a list of key values pair where key names are not known in advance, key name should be attached with the value and separated by field name separator boundary character.
+
+*Application object*
+```js
+{"msg": "This is awesome"}
+```
+
+*Nimn Data*
+```
+[msg/This is awesome]
+```
+
+*Note* : Characters `/` , `[`, `]` in Nimn data format are used to represent ASCII char 188 , 187, and 185 respectively. Check [boundary characters](https://github.com/nimndata/spec/blob/master/SPEC.md#boundary-characters) for more detail.
+
 * If data value consist any Nimn supported character (boundary or fixed value character) then it should be backslashed.
 
-**Application Object**
+*Application Object*
 
 ```js
 {
@@ -171,70 +195,14 @@ Points to be considered at the time of serialization.
 }
 ```
 
-**Nimn Data**
+*Nimn Data*
 ```
 {Some Name \[nick name\]}
 ```
 
 * Order of the keys in schema, which defines  object structure, should be same as order of values in serialized data.
 
-
-**Schema**
-
-```js
-{
-    "name" : "string",
-    "age" : "number,
-    "address" : "string"
-}
-```
-
-**Application Object**
-
-```js
-{
-    "age" : 33,
-    "name" : "Some Name [nick name]",
-    "address" : "Some long address"
-}
-```
-
-**Nimn Data**
-```
-{Some Name \[nick name\]|33|Some long address}
-```
-
-* Any key presents in application object but not in schema (definition of object) must be ignored.
-
-
-**Schema**
-
-```js
-{
-    "name" : "string",
-    "address" : "string"
-}
-```
-
-**Application Object**
-
-```js
-{
-    "name" : "Some Name [nick name]",
-    "age" : 33,
-    "address" : "Some long address"
-}
-```
-
-**Nimn Data**
-```
-{Some Name \[nick name\]|Some long address}
-```
-
-* Any key presents in schema but not in object will be marked by [missing character](https://github.com/nimndata/spec/blob/master/SPEC.md#boundary-characters).
-
-
-**Schema**
+*Schema*
 
 ```js
 {
@@ -244,7 +212,62 @@ Points to be considered at the time of serialization.
 }
 ```
 
-**Application Object**
+*Application Object*
+
+```js
+{
+    "age" : 33,
+    "name" : "Some Name [nick name]",
+    "address" : "Some long address"
+}
+```
+
+*Nimn Data*
+```
+{Some Name \[nick name\]|33|Some long address}
+```
+
+* Any key presents in application object but not in schema (definition of object) must be ignored.
+
+
+*Schema*
+
+```js
+{
+    "name" : "string",
+    "address" : "string"
+}
+```
+
+*Application Object*
+
+```js
+{
+    "name" : "Some Name [nick name]",
+    "age" : 33,
+    "address" : "Some long address"
+}
+```
+
+*Nimn Data*
+```
+{Some Name \[nick name\]|Some long address}
+```
+
+* Any key presents in schema but not in object will be marked by [missing character](https://github.com/nimndata/spec/blob/master/SPEC.md#boundary-characters).
+
+
+*Schema*
+
+```js
+{
+    "name" : "string",
+    "age" : "number",
+    "address" : "string"
+}
+```
+
+*Application Object*
 
 ```js
 {
@@ -253,7 +276,7 @@ Points to be considered at the time of serialization.
 }
 ```
 
-**Nimn Data**
+*Nimn Data*
 ```
 {Some Name \[nick name\]|*|Some long address}
 ```
@@ -293,7 +316,7 @@ All the points covered in serialization should be cosidered at the time of deser
 * If the serialized data has more fields than defined in schema, they should be ignored if they appears in last.
 
 
-**Schema**
+*Schema*
 
 ```js
 {
@@ -303,12 +326,12 @@ All the points covered in serialization should be cosidered at the time of deser
 ```
 
 
-**Nimn Data**
+*Nimn Data*
 ```
 {Some Name \[nick name\]|30|Some long address}
 ```
 
-**Application Object**
+*Application Object*
 
 ```js
 {
