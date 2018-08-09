@@ -2,8 +2,7 @@
 
 You'll find an overview of Nimn format on this page. Please read [Specification](/SPEC.md) for more detail. Or visit [site](http://nimn.in) to try yourself how much data it can save.
 
-> **Collaborators** and **Contributors** are welcome.
-
+> # I heard of protobuf today and observed that it is pretty much same with different syntax. Hence this project is discontinued until we have some good reason to continue it.
 
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/nimnformat)
 
