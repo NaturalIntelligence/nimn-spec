@@ -2,8 +2,6 @@
 
 You'll find an overview of Nimn format on this page. Please read [Specification](/SPEC.md) for more detail. Or visit [site](http://nimn.in) to try yourself how much data it can save.
 
-> # I heard of protobuf today and observed that it is pretty much same with different syntax. Hence this project is discontinued until we have some good reason to continue it.
-
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/nimnformat)
 
 
@@ -11,6 +9,8 @@ You'll find an overview of Nimn format on this page. Please read [Specification]
 > Nimn (निम्न) word is taken from Sanskrit language which means *very less*.
 
 When we communicate between servers or clients, half of the bandwidth is utilized by metadata. *Nimn data is dense form of data where field level information is kept separate from actual data.*  In brief, it can be understood as **schema aware compressed** form.
+
+Initial version of Nimn data format was very much similar to Avro. However, to speed up the processing there are some changed done. The aim of Nimn data format is fast encoding, decoding, and search in data. No encoding technique is applied on field's value but it's structure to speed up searching. Hence encoded message has more bytes than Protobuf, Thrift, or Avro. However difference is not minimal. You can use addons for field level compression which will reduce the size further but you'll have to compromise with searching speed.
 
 ## Benefits and loss
 
