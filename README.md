@@ -23,7 +23,7 @@ Initial version of Nimn data format was very much similar to Avro. However, to s
 
 * Updating schema everytime you change object structure.
 * Maintaining schema definition when you want to support all older versions of data structure.
-* Redability
+* Readability
 
 ### MIME type
 
