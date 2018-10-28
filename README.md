@@ -4,6 +4,7 @@ You'll find an overview of Nimn format on this page. Please read [Specification]
 
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/nimnformat)
 
+> Working on improvements.
 
 ## About
 > Nimn (निम्न) word is taken from Sanskrit language which means *very less*.
