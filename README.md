@@ -1,6 +1,6 @@
 # निम्न (Nimn)
 
-You'll find an overview of Nimn format on this page. Please read [Specification](/SPEC.md) for more detail. Or visit [site](https://amitkumargupta.work/nimn/) to try yourself how much data it can save.
+You'll find an overview of Nimn format on this page. Please read [Specification](/SPEC.md) for more detail. Or visit [site]([https://amitkumargupta.work/nimn/](https://github.com/NaturalIntelligence/nimn-spec)) to try yourself how much data it can save.
 
 > Version 2 is in mind. Need time to develope it
 
